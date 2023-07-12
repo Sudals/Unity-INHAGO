@@ -13,12 +13,9 @@ public class GyroManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x, y, z;
+        float y;
 
-        x = -(Input.gyro.rotationRateUnbiased.x) * 2;
         y = -(Input.gyro.rotationRateUnbiased.y) * 2;
-        z = -(Input.gyro.rotationRateUnbiased.z) * 2;
-
-        transform.Rotate(x, y, z);
+        transform.Rotate(0, y, 0);
     }
 }
