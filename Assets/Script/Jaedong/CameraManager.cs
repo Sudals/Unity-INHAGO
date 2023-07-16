@@ -8,6 +8,9 @@ public class CameraManager : MonoBehaviour
     private Vector3 touchStartPosition;
     public float moveSpeed = 100000000000000.0f;
 
+    public Transform target;
+    public Vector3 offset;
+
     void Update()
     {
         if (Input.touchCount > 0)
@@ -24,15 +27,14 @@ public class CameraManager : MonoBehaviour
                 Vector3 touchDelta = touchCurrentPosition - touchStartPosition;
 
                 float moveX = touchDelta.x * Time.deltaTime * moveSpeed;
-                float moveZ = touchDelta.y * Time.deltaTime * moveSpeed;
+                float moveZ = touchDelta.y * Time.deltaTime * moveSpeed;                
 
-                // y축 이동을 고정
-                float moveY = 0;
-
-                transform.Translate(new Vector3(moveX, moveY, moveZ));
+                transform.Translate(new Vector3(moveX, 0.0f, moveZ));
 
                 touchStartPosition = touchCurrentPosition;
             }
+        } else {
+            transform.position = target.position + offset;
         }
     }
 }
